@@ -78,6 +78,37 @@ public class WindowManagerService : IWindowManagerService
         return null;
     }
 
+    /// <summary>
+    /// 현재 열려 있는 해당 Window 종료
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>true:해당 윈도우 종료, false:활성화된 Window 없음으로 종료 안됨</returns>
+    public bool CloseWindow(string key)
+    {
+        foreach (Window window in Application.Current.Windows)
+        { 
+            var dataContext = window.GetDataContext();
+            if (dataContext?.GetType().FullName == key)
+            { 
+                window.Close();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 현재 활성화된 모든 Window 종료
+    /// </summary>
+    /// <param name="key"></param>
+    public void CloseWindow()
+    {
+        foreach (Window window in Application.Current.Windows)
+        {
+            window.Close();
+        }
+    }
+
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
         if (sender is Frame frame)

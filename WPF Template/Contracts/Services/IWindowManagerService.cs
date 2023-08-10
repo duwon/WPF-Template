@@ -11,4 +11,8 @@ public interface IWindowManagerService
     bool? OpenInDialog(string pageKey, object parameter = null);
 
     Window GetWindow(string pageKey);
+
+    bool CloseWindow(string key);
+
+    void CloseWindow();
 }

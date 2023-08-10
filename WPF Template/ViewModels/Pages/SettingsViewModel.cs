@@ -49,9 +49,9 @@ public partial class SettingsViewModel : ObservableObject, INavigationAware
             {
                 _windowManagerService.OpenInNewWindow(typeof(DebugMessageViewModel).FullName);
             }
-            else if(_windowManagerService.GetWindow(typeof(DebugMessageViewModel).FullName) != null)
+            else
             {
-                _windowManagerService.GetWindow(typeof(DebugMessageViewModel).FullName).Close();
+                _windowManagerService.CloseWindow(typeof(DebugMessageViewModel).FullName);
             }
             SetProperty(ref isDebugMessageWindow, value);
         }

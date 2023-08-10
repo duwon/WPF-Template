@@ -7,6 +7,9 @@ namespace WPF_Template.Views.Windows;
 
 public partial class MainWindow : MetroWindow, IMainWindow
 {
+
+    public event EventHandler CloseEvent;
+
     public MainWindow(MainWindowViewModel viewModel)
     {
         InitializeComponent();
@@ -17,7 +20,15 @@ public partial class MainWindow : MetroWindow, IMainWindow
         => mainFrame;
 
     public void ShowWindow()
-        => Show();
+    {
+        Show();
+        Closed += MainWindow_Closed;
+    }
+
+    private void MainWindow_Closed(object sender, EventArgs e)
+    {
+        CloseEvent?.Invoke(this, EventArgs.Empty);
+    }
 
     public void CloseWindow()
         => Close();

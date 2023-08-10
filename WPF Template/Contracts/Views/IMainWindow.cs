@@ -9,4 +9,6 @@ public interface IMainWindow
     void ShowWindow();
 
     void CloseWindow();
+
+    event EventHandler CloseEvent;
 }
