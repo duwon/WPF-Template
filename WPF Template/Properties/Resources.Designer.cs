@@ -70,6 +70,15 @@ namespace WPF_Template.Properties {
         }
         
         /// <summary>
+        ///   Debug Messsage과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        public static string DebugMessagePageTitle {
+            get {
+                return ResourceManager.GetString("DebugMessagePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Home과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         public static string HomePageTitle {

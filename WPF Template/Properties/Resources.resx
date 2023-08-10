@@ -159,4 +159,7 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>WPF Template</value>
   </data>
+  <data name="DebugMessagePageTitle" xml:space="preserve">
+    <value>Debug Messsage</value>
+  </data>
 </root>

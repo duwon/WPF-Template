@@ -18,6 +18,7 @@ public class PageService : IPageService
         _serviceProvider = serviceProvider;
         Configure<HomeViewModel, HomePage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<DebugMessageViewModel, DebugMessagePage>();
     }
 
     public Type GetPageType(string key)
