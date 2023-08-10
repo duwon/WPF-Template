@@ -88,6 +88,15 @@ namespace WPF_Template.Properties {
         }
         
         /// <summary>
+        ///   Debug과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        public static string MainDebugMessagePage {
+            get {
+                return ResourceManager.GetString("MainDebugMessagePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Go back과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         public static string MainGoBackButton {

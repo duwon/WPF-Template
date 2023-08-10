@@ -162,4 +162,7 @@
   <data name="DebugMessagePageTitle" xml:space="preserve">
     <value>Debug Messsage</value>
   </data>
+  <data name="MainDebugMessagePage" xml:space="preserve">
+    <value>Debug</value>
+  </data>
 </root>

@@ -19,7 +19,7 @@ public partial class MainWindowViewModel : ObservableObject
     /// </summary>
     public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
-        new HamburgerMenuGlyphItem() { Label = Resources.MainHomePage, Glyph = "\uE8A5", TargetPageType = typeof(HomeViewModel) },
+        new HamburgerMenuGlyphItem() { Label = Resources.MainHomePage, Glyph = "\uE80F", TargetPageType = typeof(HomeViewModel) },
     };
 
     /// <summary>
@@ -27,7 +27,8 @@ public partial class MainWindowViewModel : ObservableObject
     /// </summary>
     public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
-        new HamburgerMenuGlyphItem() { Label = Resources.MainSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) }
+        new HamburgerMenuGlyphItem() { Label = Resources.MainDebugMessagePage, Glyph = "\uE8A2", TargetPageType = typeof(DebugMessageViewModel) },
+        new HamburgerMenuGlyphItem() { Label = Resources.MainSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) },
     };
 
     #region ObservableProperty
