@@ -11,8 +11,13 @@ namespace WPF_Template.ViewModels.Windows;
 public partial class MainWindowViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
+    private readonly IWindowManagerService _windowManagerService;
 
-    public MainWindowViewModel(INavigationService navigationService) => _navigationService = navigationService;
+    public MainWindowViewModel(INavigationService navigationService, IWindowManagerService windowManagerService)
+    {
+        _navigationService = navigationService;
+        _windowManagerService = windowManagerService;
+    }
 
     /// <summary>
     /// 좌측 메뉴 상단
@@ -27,7 +32,7 @@ public partial class MainWindowViewModel : ObservableObject
     /// </summary>
     public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
-        new HamburgerMenuGlyphItem() { Label = Resources.MainDebugMessagePage, Glyph = "\uE8A2", TargetPageType = typeof(DebugMessageViewModel) },
+        // new HamburgerMenuGlyphItem() { Label = Resources.MainDebugMessagePage, Glyph = "\uE8A2", TargetPageType = typeof(DebugMessageViewModel) },
         new HamburgerMenuGlyphItem() { Label = Resources.MainSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) },
     };
 
@@ -64,6 +69,15 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private void OnOptionsMenuItemInvoked()
         => NavigateTo(SelectedOptionsMenuItem.TargetPageType);
+
+    [RelayCommand]
+    private void NewDebugWindow()
+    {
+        if (_windowManagerService.GetWindow(typeof(DebugMessageViewModel).FullName) == null)
+        {
+            _windowManagerService.OpenInNewWindow(typeof(DebugMessageViewModel).FullName, "DEBUG");
+        }
+    }
 
     #endregion
 

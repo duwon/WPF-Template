@@ -34,6 +34,17 @@
                     FontSize="14"
                     Text="&#xE72B;" />
             </Button>
+            <Button
+                Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
+                AutomationProperties.Name="{x:Static properties:Resources.MainNewDebugWindow}"
+                Command="{Binding NewDebugWindowCommand}"
+                ToolTip="{x:Static properties:Resources.MainNewDebugWindow}">
+                <TextBlock
+                    AutomationProperties.Name="{x:Static properties:Resources.MainNewDebugWindow}"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="14"
+                    Text="&#xE8A2;" />
+            </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
     <controls:MetroWindow.Resources>

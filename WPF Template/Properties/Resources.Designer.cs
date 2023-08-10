@@ -124,6 +124,15 @@ namespace WPF_Template.Properties {
         }
         
         /// <summary>
+        ///   New Debug Window과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        public static string MainNewDebugWindow {
+            get {
+                return ResourceManager.GetString("MainNewDebugWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Settings과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         public static string MainSettingsPage {

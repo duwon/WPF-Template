@@ -14,15 +14,13 @@ public partial class SettingsViewModel : ObservableObject, INavigationAware
     private readonly IThemeSelectorService _themeSelectorService;
     private readonly ISystemService _systemService;
     private readonly IApplicationInfoService _applicationInfoService;
-    private readonly IWindowManagerService _windowManagerService;
 
-    public SettingsViewModel(IOptions<AppConfig> appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService, IWindowManagerService windowManagerService)
+    public SettingsViewModel(IOptions<AppConfig> appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService)
     {
         _appConfig = appConfig.Value;
         _themeSelectorService = themeSelectorService;
         _systemService = systemService;
         _applicationInfoService = applicationInfoService;
-        _windowManagerService = windowManagerService;
 
         ConfigurationsFolder = _appConfig.ConfigurationsFolder;
     }
@@ -37,25 +35,6 @@ public partial class SettingsViewModel : ObservableObject, INavigationAware
 
     [ObservableProperty]
     private string _configurationsFolder;
-
-    private bool isDebugMessageWindow;
-    public bool IsDebugMessageWindow
-    {
-        get => isDebugMessageWindow;
-        set
-        {
-            if (value == isDebugMessageWindow) return;
-            if (!isDebugMessageWindow)
-            {
-                _windowManagerService.OpenInNewWindow(typeof(DebugMessageViewModel).FullName, "DEBUG");
-            }
-            else
-            {
-                _windowManagerService.CloseWindow(typeof(DebugMessageViewModel).FullName);
-            }
-            SetProperty(ref isDebugMessageWindow, value);
-        }
-    }
 
     #endregion
 

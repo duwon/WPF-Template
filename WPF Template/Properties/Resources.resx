@@ -165,4 +165,7 @@
   <data name="MainDebugMessagePage" xml:space="preserve">
     <value>Debug</value>
   </data>
+  <data name="MainNewDebugWindow" xml:space="preserve">
+    <value>New Debug Window</value>
+  </data>
 </root>
