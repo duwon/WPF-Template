@@ -9,23 +9,31 @@
     d:DesignWidth="800"
     Style="{DynamicResource MahApps.Styles.Page}"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBlock
-            Margin="{StaticResource MediumLeftMargin}"
-            Style="{StaticResource PageTitleStyle}"
-            Text="{x:Static properties:Resources.DebugMessagePageTitle}" />
-        <Grid
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}"
-            Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <!--
-                The Mahapps Gray10 color represents where you should place your content.
-                Place your content here.
-            -->
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="{StaticResource MediumLeftMargin}"
+                Style="{StaticResource PageTitleStyle}"
+                Text="{x:Static properties:Resources.DebugMessagePageTitle}" />
+            <Grid
+                Grid.Row="1"
+                Margin="{StaticResource MediumLeftRightMargin}"
+                Background="{DynamicResource MahApps.Brushes.Gray10}">
+
+                <StackPanel>
+                    <Button Command="{Binding WriteDebugMessageCommand}" Content="Print Debug Message" />
+                    <TextBlock
+                        Margin="{StaticResource MediumTopMargin}"
+                        Text="{Binding DebugMessageText}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

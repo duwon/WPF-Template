@@ -88,8 +88,8 @@ public partial class App : Application
         services.AddTransient<IShellDialogWindow, MainDialogWindow>();
         services.AddTransient<MainDialogViewModel>();
 
-        services.AddTransient<DebugMessageViewModel>();
-        services.AddTransient<DebugMessagePage>();
+        services.AddSingleton<DebugMessageViewModel>();
+        services.AddSingleton<DebugMessagePage>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
