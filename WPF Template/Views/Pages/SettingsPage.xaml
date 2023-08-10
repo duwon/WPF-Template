@@ -89,6 +89,10 @@
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{StaticResource BodyTextStyle}"
                     Text="{Binding ConfigurationsFolder}" />
+
+                <ToggleButton Margin="{StaticResource MediumTopMargin}" IsChecked="{Binding IsDebugMessageWindow}">
+                    <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="DebugMessage 새 창으로 열기" />
+                </ToggleButton>
             </StackPanel>
         </Grid>
     </ScrollViewer>

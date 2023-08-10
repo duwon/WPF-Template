@@ -1,8 +1,5 @@
-﻿using System.Windows.Input;
-
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
 using Microsoft.Extensions.Options;
 
 using WPF_Template.Contracts.Services;
@@ -17,13 +14,15 @@ public partial class SettingsViewModel : ObservableObject, INavigationAware
     private readonly IThemeSelectorService _themeSelectorService;
     private readonly ISystemService _systemService;
     private readonly IApplicationInfoService _applicationInfoService;
+    private readonly IWindowManagerService _windowManagerService;
 
-    public SettingsViewModel(IOptions<AppConfig> appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService)
+    public SettingsViewModel(IOptions<AppConfig> appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService, IWindowManagerService windowManagerService)
     {
         _appConfig = appConfig.Value;
         _themeSelectorService = themeSelectorService;
         _systemService = systemService;
         _applicationInfoService = applicationInfoService;
+        _windowManagerService = windowManagerService;
 
         ConfigurationsFolder = _appConfig.ConfigurationsFolder;
     }
@@ -38,6 +37,25 @@ public partial class SettingsViewModel : ObservableObject, INavigationAware
 
     [ObservableProperty]
     private string _configurationsFolder;
+
+    private bool isDebugMessageWindow;
+    public bool IsDebugMessageWindow
+    {
+        get => isDebugMessageWindow;
+        set
+        {
+            if (value == isDebugMessageWindow) return;
+            if (!isDebugMessageWindow)
+            {
+                _windowManagerService.OpenInNewWindow(typeof(DebugMessageViewModel).FullName);
+            }
+            else if(_windowManagerService.GetWindow(typeof(DebugMessageViewModel).FullName) != null)
+            {
+                _windowManagerService.GetWindow(typeof(DebugMessageViewModel).FullName).Close();
+            }
+            SetProperty(ref isDebugMessageWindow, value);
+        }
+    }
 
     #endregion
 
