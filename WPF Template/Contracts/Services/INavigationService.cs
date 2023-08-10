@@ -8,7 +8,7 @@ public interface INavigationService
 
     bool CanGoBack { get; }
 
-    void Initialize(Frame shellFrame);
+    void Initialize(Frame mainFrame);
 
     bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false);
 

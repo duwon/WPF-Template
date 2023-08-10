@@ -21,11 +21,11 @@ public class NavigationService : INavigationService
         _pageService = pageService;
     }
 
-    public void Initialize(Frame shellFrame)
+    public void Initialize(Frame mainFrame)
     {
         if (_frame == null)
         {
-            _frame = shellFrame;
+            _frame = mainFrame;
             _frame.Navigated += OnNavigated;
         }
     }

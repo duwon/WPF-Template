@@ -3,7 +3,7 @@
 using WPF_Template.Contracts.Activation;
 using WPF_Template.Contracts.Services;
 using WPF_Template.Contracts.Views;
-using WPF_Template.ViewModels;
+using WPF_Template.ViewModels.Pages;
 
 namespace WPF_Template.Services;
 

@@ -11,7 +11,8 @@ using WPF_Template.Contracts.Services;
 using WPF_Template.Contracts.Views;
 using WPF_Template.Models;
 using WPF_Template.Services;
-using WPF_Template.ViewModels;
+using WPF_Template.ViewModels.Pages;
+using WPF_Template.ViewModels.Windows;
 using WPF_Template.Views;
 
 namespace WPF_Template;
@@ -51,17 +52,20 @@ public partial class App : Application
 
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        // TODO: Register your services, viewmodels and pages here
+        // The.NET Generic Host provides dependency injection, configuration, logging, and other services.
+        // https://docs.microsoft.com/dotnet/core/extensions/generic-host
+        // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
+        // https://docs.microsoft.com/dotnet/core/extensions/configuration
+        // https://docs.microsoft.com/dotnet/core/extensions/logging
 
         // App Host
         services.AddHostedService<ApplicationHostService>();
 
         // Activation Handlers
 
-        // Core Services
-        services.AddSingleton<IFileService, FileService>();
 
         // Services
+        services.AddSingleton<IFileService, FileService>();
         services.AddSingleton<IWindowManagerService, WindowManagerService>();
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
         services.AddSingleton<ISystemService, SystemService>();
@@ -98,5 +102,8 @@ public partial class App : Application
     {
         // TODO: Please log and handle the exception as appropriate to your scenario
         // For more info see https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
+
+        MessageBox.Show(e.Exception.Message);
+        e.Handled = true;
     }
 }

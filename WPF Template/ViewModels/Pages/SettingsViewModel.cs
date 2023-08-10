@@ -9,32 +9,14 @@ using WPF_Template.Contracts.Services;
 using WPF_Template.Contracts.ViewModels;
 using WPF_Template.Models;
 
-namespace WPF_Template.ViewModels;
+namespace WPF_Template.ViewModels.Pages;
 
-public class SettingsViewModel : ObservableObject, INavigationAware
+public partial class SettingsViewModel : ObservableObject, INavigationAware
 {
     private readonly AppConfig _appConfig;
     private readonly IThemeSelectorService _themeSelectorService;
     private readonly ISystemService _systemService;
     private readonly IApplicationInfoService _applicationInfoService;
-    private AppTheme _theme;
-    private string _versionDescription;
-    private ICommand _setThemeCommand;
-    private ICommand _privacyStatementCommand;
-
-    public AppTheme Theme
-    {
-        get { return _theme; }
-        set { SetProperty(ref _theme, value); }
-    }
-
-    public string VersionDescription
-    {
-        get { return _versionDescription; }
-        set { SetProperty(ref _versionDescription, value); }
-    }
-
-    public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new RelayCommand<string>(OnSetTheme));
 
     public SettingsViewModel(IOptions<AppConfig> appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService)
     {
@@ -42,7 +24,35 @@ public class SettingsViewModel : ObservableObject, INavigationAware
         _themeSelectorService = themeSelectorService;
         _systemService = systemService;
         _applicationInfoService = applicationInfoService;
+
+        ConfigurationsFolder = _appConfig.ConfigurationsFolder;
     }
+
+    #region ObservableProperty
+
+    [ObservableProperty]
+    private AppTheme _theme;
+
+    [ObservableProperty]
+    private string _versionDescription;
+
+    [ObservableProperty]
+    private string _configurationsFolder;
+
+    #endregion
+
+    #region RelayCommand
+
+    [RelayCommand]
+    private void OnSetTheme(string themeName)
+    {
+        var theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
+        _themeSelectorService.SetTheme(theme);
+    }
+
+    #endregion
+
+    #region INavigationService
 
     public void OnNavigatedTo(object parameter)
     {
@@ -54,9 +64,5 @@ public class SettingsViewModel : ObservableObject, INavigationAware
     {
     }
 
-    private void OnSetTheme(string themeName)
-    {
-        var theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
-        _themeSelectorService.SetTheme(theme);
-    }
+    #endregion
 }

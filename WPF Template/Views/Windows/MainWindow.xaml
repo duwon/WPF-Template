@@ -105,7 +105,7 @@
             SelectedOptionsItem="{Binding SelectedOptionsMenuItem}">
             <controls:HamburgerMenu.Content>
                 <Frame
-                    x:Name="shellFrame"
+                    x:Name="mainFrame"
                     Grid.Row="1"
                     Focusable="False"
                     NavigationUIVisibility="Hidden" />

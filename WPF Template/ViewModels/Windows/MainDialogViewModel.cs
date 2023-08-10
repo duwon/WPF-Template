@@ -3,20 +3,17 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace WPF_Template.ViewModels;
+namespace WPF_Template.ViewModels.Windows;
 
-public class MainDialogViewModel : ObservableObject
+public partial class MainDialogViewModel : ObservableObject
 {
-    private ICommand _closeCommand;
-
-    public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
-
     public Action<bool?> SetResult { get; set; }
 
     public MainDialogViewModel()
     {
     }
 
+    [RelayCommand]
     private void OnClose()
     {
         bool result = true;

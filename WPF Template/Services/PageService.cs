@@ -3,7 +3,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using WPF_Template.Contracts.Services;
-using WPF_Template.ViewModels;
+using WPF_Template.ViewModels.Pages;
 using WPF_Template.Views;
 
 namespace WPF_Template.Services;

@@ -1,87 +1,72 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
 using MahApps.Metro.Controls;
-
+using System.Collections.ObjectModel;
 using WPF_Template.Contracts.Services;
 using WPF_Template.Properties;
+using WPF_Template.ViewModels.Pages;
 
-namespace WPF_Template.ViewModels;
+namespace WPF_Template.ViewModels.Windows;
 
-public class MainWindowViewModel : ObservableObject
+public partial class MainWindowViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
-    private HamburgerMenuItem _selectedMenuItem;
-    private HamburgerMenuItem _selectedOptionsMenuItem;
-    private RelayCommand _goBackCommand;
-    private ICommand _menuItemInvokedCommand;
-    private ICommand _optionsMenuItemInvokedCommand;
-    private ICommand _loadedCommand;
-    private ICommand _unloadedCommand;
 
-    public HamburgerMenuItem SelectedMenuItem
-    {
-        get { return _selectedMenuItem; }
-        set { SetProperty(ref _selectedMenuItem, value); }
-    }
+    public MainWindowViewModel(INavigationService navigationService) => _navigationService = navigationService;
 
-    public HamburgerMenuItem SelectedOptionsMenuItem
-    {
-        get { return _selectedOptionsMenuItem; }
-        set { SetProperty(ref _selectedOptionsMenuItem, value); }
-    }
-
-    // TODO: Change the icons and titles for all HamburgerMenuItems here.
+    /// <summary>
+    /// 좌측 메뉴 상단
+    /// </summary>
     public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
         new HamburgerMenuGlyphItem() { Label = Resources.MainHomePage, Glyph = "\uE8A5", TargetPageType = typeof(HomeViewModel) },
     };
 
+    /// <summary>
+    /// 좌측 메뉴 바닥
+    /// </summary>
     public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
         new HamburgerMenuGlyphItem() { Label = Resources.MainSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) }
     };
 
-    public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
+    #region ObservableProperty
+    [ObservableProperty]
+    private HamburgerMenuItem _selectedMenuItem;
 
-    public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new RelayCommand(OnMenuItemInvoked));
+    [ObservableProperty]
+    private HamburgerMenuItem _selectedOptionsMenuItem;
+    #endregion
 
-    public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new RelayCommand(OnOptionsMenuItemInvoked));
+    #region RelayCommand
 
-    public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
-
-    public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new RelayCommand(OnUnloaded));
-
-    public MainWindowViewModel(INavigationService navigationService)
-    {
-        _navigationService = navigationService;
-    }
-
+    [RelayCommand]
     private void OnLoaded()
     {
         _navigationService.Navigated += OnNavigated;
     }
 
+    [RelayCommand]
     private void OnUnloaded()
     {
         _navigationService.Navigated -= OnNavigated;
     }
 
-    private bool CanGoBack()
-        => _navigationService.CanGoBack;
-
+    [RelayCommand]
     private void OnGoBack()
         => _navigationService.GoBack();
 
+    [RelayCommand]
     private void OnMenuItemInvoked()
         => NavigateTo(SelectedMenuItem.TargetPageType);
 
+    [RelayCommand]
     private void OnOptionsMenuItemInvoked()
         => NavigateTo(SelectedOptionsMenuItem.TargetPageType);
 
+    #endregion
+
+    #region INavigationService
     private void NavigateTo(Type targetViewModel)
     {
         if (targetViewModel != null)
@@ -108,4 +93,5 @@ public class MainWindowViewModel : ObservableObject
 
         GoBackCommand.NotifyCanExecuteChanged();
     }
+    #endregion
 }
