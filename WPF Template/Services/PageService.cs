@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 using WPF_Template.Contracts.Services;
 using WPF_Template.ViewModels.Pages;
-using WPF_Template.Views;
+using WPF_Template.Views.Pages;
 
 namespace WPF_Template.Services;
 
@@ -16,7 +16,7 @@ public class PageService : IPageService
     public PageService(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
-        Configure<HomeViewModel, Homepage>();
+        Configure<HomeViewModel, HomePage>();
         Configure<SettingsViewModel, SettingsPage>();
     }
 

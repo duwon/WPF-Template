@@ -13,7 +13,8 @@ using WPF_Template.Models;
 using WPF_Template.Services;
 using WPF_Template.ViewModels.Pages;
 using WPF_Template.ViewModels.Windows;
-using WPF_Template.Views;
+using WPF_Template.Views.Pages;
+using WPF_Template.Views.Windows;
 
 namespace WPF_Template;
 
@@ -79,13 +80,16 @@ public partial class App : Application
         services.AddTransient<MainWindowViewModel>();
 
         services.AddTransient<HomeViewModel>();
-        services.AddTransient<Homepage>();
+        services.AddTransient<HomePage>();
 
         services.AddTransient<SettingsViewModel>();
         services.AddTransient<SettingsPage>();
 
         services.AddTransient<IShellDialogWindow, MainDialogWindow>();
         services.AddTransient<MainDialogViewModel>();
+
+        services.AddTransient<DebugMessageViewModel>();
+        services.AddTransient<DebugMessagePage>();
 
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

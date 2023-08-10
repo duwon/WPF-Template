@@ -5,7 +5,7 @@ using MahApps.Metro.Controls;
 using WPF_Template.Contracts.Views;
 using WPF_Template.ViewModels.Windows;
 
-namespace WPF_Template.Views;
+namespace WPF_Template.Views.Windows;
 
 public partial class MainDialogWindow : MetroWindow, IShellDialogWindow
 {
