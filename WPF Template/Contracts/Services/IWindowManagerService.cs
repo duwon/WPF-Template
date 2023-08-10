@@ -6,7 +6,7 @@ public interface IWindowManagerService
 {
     Window MainWindow { get; }
 
-    void OpenInNewWindow(string pageKey, object parameter = null);
+    void OpenInNewWindow(string key, string title, object parameter = null);
 
     bool? OpenInDialog(string pageKey, object parameter = null);
 

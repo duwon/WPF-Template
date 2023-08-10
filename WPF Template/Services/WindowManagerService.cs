@@ -1,9 +1,8 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.Controls;
+using System.Reflection.Metadata;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-
-using MahApps.Metro.Controls;
-
 using WPF_Template.Contracts.Services;
 using WPF_Template.Contracts.ViewModels;
 using WPF_Template.Contracts.Views;
@@ -24,7 +23,7 @@ public class WindowManagerService : IWindowManagerService
         _pageService = pageService;
     }
 
-    public void OpenInNewWindow(string key, object parameter = null)
+    public void OpenInNewWindow(string key, string title, object parameter = null)
     {
         var window = GetWindow(key);
         if (window != null)
@@ -35,7 +34,7 @@ public class WindowManagerService : IWindowManagerService
         {
             window = new MetroWindow()
             {
-                Title = "WPF_Template",
+                Title = title,
                 Style = Application.Current.FindResource("CustomMetroWindow") as Style
             };
             var frame = new Frame()
@@ -86,10 +85,10 @@ public class WindowManagerService : IWindowManagerService
     public bool CloseWindow(string key)
     {
         foreach (Window window in Application.Current.Windows)
-        { 
+        {
             var dataContext = window.GetDataContext();
             if (dataContext?.GetType().FullName == key)
-            { 
+            {
                 window.Close();
                 return true;
             }
