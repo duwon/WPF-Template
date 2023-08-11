@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+    <data name="ShellSerialCommPage" xml:space="preserve">
+		    <value>SerialComm</value>
+    </data>
+    <data name="SerialCommPageTitle" xml:space="preserve">
+		    <value>SerialComm</value>
+    </data>
+
   <!-- 
     Microsoft ResX Schema 
     

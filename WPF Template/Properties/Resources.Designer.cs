@@ -212,5 +212,27 @@ namespace WPF_Template.Properties {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to SerialComm.
+        /// </summary>
+        public static string SerialCommPageTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("SerialCommPageTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to SerialComm.
+        /// </summary>
+        public static string ShellSerialCommPage
+        {
+            get
+            {
+                return ResourceManager.GetString("ShellSerialCommPage", resourceCulture);
+            }
+        }
     }
 }

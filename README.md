@@ -9,5 +9,11 @@
 - Microsoft.Extensions.Hosting
 
 ## Extension
+- [Template Studio for WPF](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForWPF)
 - [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler)
 - [Snoop](https://github.com/snoopwpf/snoopwpf)
+
+## 기타
+- [MDL2 Icons](https://scottdorman.blog/mdl2-icons/icons/)
+- [Segoe MDL2 Assets](http://modernicons.io/segoe-mdl2/cheatsheet/)
+- [MahApps.MetroIconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks)

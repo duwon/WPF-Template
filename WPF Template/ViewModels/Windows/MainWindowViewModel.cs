@@ -25,6 +25,7 @@ public partial class MainWindowViewModel : ObservableObject
     public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
     {
         new HamburgerMenuGlyphItem() { Label = Resources.MainHomePage, Glyph = "\uE80F", TargetPageType = typeof(HomeViewModel) },
+        new HamburgerMenuGlyphItem() { Label = Resources.MainHomePage, Glyph = "\uE8B1", TargetPageType = typeof(SerialCommViewModel) },
     };
 
     /// <summary>

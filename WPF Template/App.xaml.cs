@@ -91,6 +91,9 @@ public partial class App : Application
         services.AddSingleton<DebugMessageViewModel>();
         services.AddSingleton<DebugMessagePage>();
 
+        services.AddSingleton<SerialCommViewModel>();
+        services.AddSingleton<SerialCommPage>();
+
         // Configuration
         services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
     }

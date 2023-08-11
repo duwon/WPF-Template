@@ -19,6 +19,7 @@ public class PageService : IPageService
         Configure<HomeViewModel, HomePage>();
         Configure<SettingsViewModel, SettingsPage>();
         Configure<DebugMessageViewModel, DebugMessagePage>();
+        Configure<SerialCommViewModel, SerialCommPage>();
     }
 
     public Type GetPageType(string key)
